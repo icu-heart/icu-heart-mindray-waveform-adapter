@@ -1,0 +1,62 @@
+{
+    "bedspace_mapping": {
+      "Ward1": {
+        "Bed1": "001", 
+        "Bed2": "002"
+      },
+      "Ward2": {
+        "Bed1": "001", 
+        "Bed2": "002"
+      }
+    },
+    "ward_mapping": {
+      "Ward1": "000001",
+      "Ward2": "000002"
+    },
+    "signal_name_keeps": [
+      "MDC_CONC_AWAY_CO2",
+      "MDC_ECG_ELEC_POTL_AVF",
+      "MDC_ECG_ELEC_POTL_AVL",
+      "MDC_ECG_ELEC_POTL_AVR",
+      "MDC_ECG_ELEC_POTL_I",
+      "MDC_ECG_ELEC_POTL_II",
+      "MDC_ECG_ELEC_POTL_III",
+      "MDC_ECG_ELEC_POTL_V1",
+      "MDC_ECG_ELEC_POTL_V2",
+      "MDC_IMPED_TTHOR",
+      "MDC_PRESS_BLD",
+      "MDC_PRESS_BLD_ART",
+      "MDC_PRESS_BLD_ART_BRACHIAL",
+      "MDC_PRESS_BLD_ATR_LEFT",
+      "MDC_PRESS_BLD_ART_PULM",
+      "MDC_PRESS_BLD_ART_UMB",
+      "MDC_PRESS_BLD_VEN_CENT",
+      "MDC_PULS_OXIM_PLETH",
+      "MDC_CONC_AWAY_AGENT",
+      "MDC_CONC_AWAY_ISOFL",
+      "MDC_CONC_AWAY_N2O",
+      "MDC_CONC_AWAY_O2",
+      "MDC_ECG_ELEC_POTL_V",
+      "MDC_EEG_ELEC_POTL_CRTX",
+      "MDC_FLOW_AWAY",
+      "MDC_PRESS_AWAY",
+      "MDC_PRESS_BLD_ATR_RIGHT",
+      "MDC_PRESS_BLD_VEN_UMB",
+      "MDC_VOL_AWAY",
+      "MDC_HEAD_CENT_L_3",
+      "MDC_HEAD_CENT_R_4",
+      "MDC_HEAD_FRONT_POLAR_L",
+      "MDC_HEAD_FRONT_POLAR_R",
+      "MDC_PRESS_INTRA_CRAN",
+      "MDC_PRESS_BLD_VENT_LEFT",
+      "MDC_PRESS_BLD_AORT",
+      "MDC_PRESS_BLD_ART_FEMORAL",
+      "MINDRAY_ECG_ELEC_POTL_VB",
+      "MNDRY_EEG_ELEC_POTL_BIS_EYE",
+      "MNDRY_EEG_ELEC_POTL_BIS_TEMPR",
+      "MNDRY_ECG_ELEC_POTL_VB",
+      "MDC_ECG_ELEC_POTL_V6"    
+    ],
+    "signal_name_drops": [
+    ]
+  }
