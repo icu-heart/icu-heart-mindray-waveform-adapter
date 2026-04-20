@@ -1,0 +1,23 @@
+__pycache__
+*.json
+*.csv
+*.doc*
+*.xls*
+*.pickle
+*.pkl
+*.png
+*.jpg
+*.jpeg
+*.pkl*
+*.log 
+*.so
+*.js
+*.env.local
+.env.*.local
+*.crt
+*.key
+
+# To keep
+!mapping_registry.json
+!definitions.json
+!docs/content/img/*
