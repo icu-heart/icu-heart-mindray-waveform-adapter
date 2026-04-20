@@ -1,5 +1,6 @@
 site_name: ICU-Heart Mindray Waveform Adapter
 docs_dir: content
+site_url: https://icu-heart.github.io/icu-heart-mindray-waveform-adapter/
 nav:
   - Home: index.md
   - Setup: setup.md
