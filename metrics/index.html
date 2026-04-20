@@ -1,0 +1,740 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://icu-heart.github.io/icu-heart-mindray-waveform-adapter/metrics/">
+      
+      
+        <link rel="prev" href="../parser/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/ECG_on_Transparent.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Metrics - ICU-Heart Mindray Waveform Adapter</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#metrics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://icu-heart.github.io" title="ICU-Heart Mindray Waveform Adapter" class="md-header__button md-logo" aria-label="ICU-Heart Mindray Waveform Adapter" data-md-component="logo">
+      
+  <img src="../img/WoT_Rectangle_C_Aligned_No_Tag.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ICU-Heart Mindray Waveform Adapter
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Metrics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://icu-heart.github.io" title="ICU-Heart Mindray Waveform Adapter" class="md-nav__button md-logo" aria-label="ICU-Heart Mindray Waveform Adapter" data-md-component="logo">
+      
+  <img src="../img/WoT_Rectangle_C_Aligned_No_Tag.png" alt="logo">
+
+    </a>
+    ICU-Heart Mindray Waveform Adapter
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rabbitmq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RabbitMQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../receiver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Receiver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What are metrics?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#waveform-pipeline-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Waveform pipeline metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Waveform pipeline metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#collection-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collection methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Collection methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scraping-using-prometheus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scraping using Prometheus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-metricsmanager-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MetricsManager class
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What are metrics?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#waveform-pipeline-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Waveform pipeline metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Waveform pipeline metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#collection-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collection methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Collection methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scraping-using-prometheus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scraping using Prometheus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-metricsmanager-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MetricsManager class
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="metrics">Metrics</h1>
+<h2 id="what-are-metrics">What are metrics?</h2>
+<p>Metrics are numerical measurements of some part of the pipeline which are tracked over time. Each of the processes in the waveform pipeline produce metrics, and these can be gathered together by the metrics monitoring software <a href="https://prometheus.io/">Prometheus</a>. The metrics visualisation tool <a href="https://grafana.com/">Grafana</a> can then be used to build and display dashboards from the gathered metrics. </p>
+<h2 id="waveform-pipeline-metrics">Waveform pipeline metrics</h2>
+<p>Metrics are collected from different elements of the pipeline in different ways. The table is a summary of the metrics and their <a href="#collection-methods">collection methods</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Pipeline component</th>
+<th>Collection method</th>
+<th>Description</th>
+<th>Metrics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../rabbitmq/">RabbitMQ</a></td>
+<td>Scraped by Prometheus (built-in metrics)</td>
+<td>How many messages are in which queues, and how much memory is taken up by RabbitMQ</td>
+<td><details><summary>Click to expand</summary>Metrics defined under:<br><a href="https://www.rabbitmq.com/docs/prometheus#queue-coarse-metrics">queue_coarse_metrics</a><br><a href="https://www.rabbitmq.com/docs/prometheus#per-queue-consumer-count">queue_consumer_count</a><br><a href="https://www.rabbitmq.com/docs/prometheus#exchange-metrics">queue_exchange_metrics</a><br><a href="https://www.rabbitmq.com/docs/prometheus#detailed-queue-metrics">queue_metrics</a></details></td>
+</tr>
+<tr>
+<td><a href="../receiver/">Receiver</a></td>
+<td>Sent over OTel using <a href="#the-metricsmanager-class">MetricsManager</a></td>
+<td>How many messages are received, written to file and published to RabbitMQ</td>
+<td><details><summary>Click to expand</summary>hl7_receiver_messages_received_total<br>hl7_receiver_messages_rejected_total<br>hl7_receiver_messages_published_total<br>hl7_receiver_rmq_publish_duration_ms<br>hl7_receiver_file_write_duration_ms<br>hl7_receiver_message_size<br>hl7_receiver_messages_written_total<br>hl7_receiver_message_processing_duration_ms<br>hl7_receiver_connections_total<br>hl7_receiver_socket_buffer_bytes<br>hl7_receiver_connections_failed_total</details></td>
+</tr>
+<tr>
+<td><a href="../parser/">Parser</a></td>
+<td>Sent over OTel using <a href="#the-metricsmanager-class">MetricsManager</a></td>
+<td>How many messages are processed and published to RabbitMQ, and how long the parser is taking. Counts for unknown signals and beds.</td>
+<td><details><summary>Click to expand</summary>hl7_messages_processed_total<br>hl7_messages_published_total<br>hl7_message_errors_total<br>hl7_parse_batch_duration_ms<br>hl7_batch_size<br>hl7_signals_processed_total<br>hl7_unknown_bed_messages_total<br>hl7_unknown_signal_messages_total</details></td>
+</tr>
+</tbody>
+</table>
+<h3 id="collection-methods">Collection methods</h3>
+<p>Metrics are collected in different ways depending on the component being monitored; as outlined in the table above.</p>
+<h4 id="scraping-using-prometheus">Scraping using Prometheus</h4>
+<p>Some services can be scraped automatically by Prometheus because there are in-built metrics being recorded already. In the waveform pipeline, these are:</p>
+<ul>
+<li>Prometheus itself</li>
+<li>RabbitMQ</li>
+</ul>
+<p>To configure RabbitMQ:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">conf.d/20-management_agent.disable_metrics_collector.conf</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="na">management_agent.disable_metrics_collector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Then metric scraping can be <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/">configured in a prometheus.yml file</a> by adding jobs under <code>scrape_configs</code> which specify which metrics to scrape and from which targets. </p>
+<h4 id="the-metricsmanager-class">The MetricsManager class</h4>
+<p>This is an internal class for managing metrics in Python code. It is used in the pieces of the adapter which have been written internally. The class can be found in <code>src/core/utils/metrics.py</code>.</p>
+<p>To use the metrics manager, first initialise an instance of the class by specifying a service name (a string for tagging the metrics) and an OTel endpoint for exporting the metrics via an <a href="https://opentelemetry.io/docs/specs/otel/metrics/sdk_exporters/otlp/">OTLP Metrics Exporter</a>. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mm</span> <span class="o">=</span> <span class="n">MetricsManager</span><span class="p">(</span>
+    <span class="n">service_name</span><span class="o">=</span><span class="s2">&quot;hl7.receiver&quot;</span>
+    <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://prometheus:9090/api/v1/otlp/v1/metrics&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Note that the endpoint can also be set using the "OTEL_ENDPOINT" environment variable.</p>
+<p>There are a few different <a href="https://prometheus.io/docs/tutorials/understanding_metric_types/">types of metrics</a> supported:</p>
+<ul>
+<li><strong>Counters:</strong> a number that can only increase or be reset. When a counter is recorded, the value recorded is added to the current value.</li>
+<li><strong>Gauges:</strong> a number that can go up or down. When a gauge is recorded, the value recorded overwrites the current value.</li>
+<li><strong>Histograms:</strong> counts within bins</li>
+</ul>
+<p>To record a metric, you can use the <code>.record</code> method, e.g.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mm</span><span class="o">.</span><span class="n">record</span><span class="p">({</span>
+    <span class="s2">&quot;counters&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># increment by 120</span>
+        <span class="s2">&quot;hl7_messages_processed_total&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+        <span class="c1"># increment by 118 and add metadata with route: parsed</span>
+        <span class="s2">&quot;hl7_messages_published_total&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">118</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;route&quot;</span><span class="p">:</span> <span class="s2">&quot;parsed&quot;</span><span class="p">}),</span>
+        <span class="c1"># increment by 2 for ward A, bed 01</span>
+        <span class="c1"># and by 1 for ward B, bed 07</span>
+        <span class="s2">&quot;hl7_unknown_bed_messages_total&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;ward&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;bed&quot;</span><span class="p">:</span> <span class="s2">&quot;01&quot;</span><span class="p">}),</span>
+            <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;ward&quot;</span><span class="p">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;bed&quot;</span><span class="p">:</span> <span class="s2">&quot;07&quot;</span><span class="p">})</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;gauges&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># replace with 5432</span>
+        <span class="s2">&quot;hl7_queue_depth&quot;</span><span class="p">:</span> <span class="mi">5432</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;histograms&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># Add three values which can later be viewed as counts within bins</span>
+        <span class="s2">&quot;hl7_parse_batch_duration_ms&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.2</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">,</span> <span class="mf">4.9</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div>
+<p>These recorded metrics are exported to the chosen endpoint by the <a href="https://opentelemetry.io/docs/specs/otel/metrics/sdk_exporters/otlp/">OTLP Metrics Exporter</a>. In our <a href="../">waveform pipeline</a> this is set as an environment variable in the podman container e.g.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">OTEL_ENDPOINT</span><span class="o">=</span>http://prometheus:9090/api/v1/otlp/v1/metrics
+</code></pre></div>
+<p>which is pointing at the OTLP metrics endpoint on port 9090 on the prometheus container, which is also on the <a href="../#container-setup">wavenet</a> network. This means the metrics will be monitored by the Prometheus installation.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../javascripts/tablesort.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://icu-heart.github.io/icu-heart-mindray-waveform-adapter/</loc>
+         <lastmod>2026-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://icu-heart.github.io/icu-heart-mindray-waveform-adapter/metrics/</loc>
+         <lastmod>2026-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://icu-heart.github.io/icu-heart-mindray-waveform-adapter/parser/</loc>
+         <lastmod>2026-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://icu-heart.github.io/icu-heart-mindray-waveform-adapter/rabbitmq/</loc>
+         <lastmod>2026-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://icu-heart.github.io/icu-heart-mindray-waveform-adapter/receiver/</loc>
+         <lastmod>2026-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://icu-heart.github.io/icu-heart-mindray-waveform-adapter/setup/</loc>
+         <lastmod>2026-04-20</lastmod>
+    </url>
+</urlset>

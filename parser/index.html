@@ -1,0 +1,866 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://icu-heart.github.io/icu-heart-mindray-waveform-adapter/parser/">
+      
+      
+        <link rel="prev" href="../receiver/">
+      
+      
+        <link rel="next" href="../metrics/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/ECG_on_Transparent.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Parser - ICU-Heart Mindray Waveform Adapter</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="grey" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#parser-module" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://icu-heart.github.io" title="ICU-Heart Mindray Waveform Adapter" class="md-header__button md-logo" aria-label="ICU-Heart Mindray Waveform Adapter" data-md-component="logo">
+      
+  <img src="../img/WoT_Rectangle_C_Aligned_No_Tag.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ICU-Heart Mindray Waveform Adapter
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Parser
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://icu-heart.github.io" title="ICU-Heart Mindray Waveform Adapter" class="md-nav__button md-logo" aria-label="ICU-Heart Mindray Waveform Adapter" data-md-component="logo">
+      
+  <img src="../img/WoT_Rectangle_C_Aligned_No_Tag.png" alt="logo">
+
+    </a>
+    ICU-Heart Mindray Waveform Adapter
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rabbitmq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RabbitMQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../receiver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Receiver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parser
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#structure-of-an-hl7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structure of an HL7
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extracting-the-relevant-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extracting the relevant information
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bedspace-and-signal-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bedspace and signal checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-parsing-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common parsing workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#realtime-parser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Realtime parser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-parser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error parser
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#structure-of-an-hl7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structure of an HL7
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extracting-the-relevant-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extracting the relevant information
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bedspace-and-signal-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bedspace and signal checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-parsing-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common parsing workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#realtime-parser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Realtime parser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-parser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error parser
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="parser-module">Parser module</h1>
+<p>The Parser module parses HL7 messages and pushes them to the <code>cmf_atriumdb</code> exchange in common message format (CMF). </p>
+<p>The Parser can pull messages from three different sources for three different use cases. Each of these is run with a separate script.</p>
+<table>
+<thead>
+<tr>
+<th>Use case</th>
+<th>HL7 source</th>
+<th>Script</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Realtime</td>
+<td><code>hl7</code> <a href="../rabbitmq/">RabbitMQ</a> queue</td>
+<td>hl7_parser_realtime.py</td>
+<td></td>
+</tr>
+<tr>
+<td>Retrying previously failed messages</td>
+<td>RabbitMQ error queues</td>
+<td>hl7_parser_errors.py</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>You can have multiple instances of these running at the same time (i.e. if you want to ingest from multiple error queues). The realtime parser will be prioritised.</p>
+<h2 id="structure-of-an-hl7">Structure of an HL7</h2>
+<p>Waveform data are received in the form of HL7 messages, one per bed per second. HL7 (Health Level 7 version 2) defines standards for electronic message formats for sending health information. A dummy waveform HL7 message is as follows:</p>
+<div class="highlight"><pre><span></span><code>MSH|^~\&amp;|Mindray_eGateway|WARDNAME|ReceivingApp|ReceivingFacility|20251006120000||ORU^R01|MSGID1234|P|2.3.1
+PID|1||123456^^^MindrayMRN||Lastname^Firstname||19800101|M|||123 Main St^^City^ST^12345||(555)555-5555|||M||123456789
+PV1|1|I|WARDNAME^BEDNAME||||1234^Doctor^Test||||||||||1234567|||||||||||||||||||||||||20251006115900
+OBR|1||ORDER1234^Mindray_eGateway|WaveformReport^Waveform Observation|||20251006115900||||||||1234^Doctor^Test|||||||||
+OBX|1|NA|131330^MDC_PULS_OXIM_PLETH^MDC|1.7.6.131330|Pleth signal
+OBX|2|NM|0^MDC_ATTR_SAMP_RATE^MDC|1.7.6.131330.1|125|264640^MDC_DIM_HZ^MDC|||||R
+OBX|3|NM|67917^MDC_ATTR_NU_MSMT_RES^MDC|1.7.6.131330.2|0.003906|266418^MDC_DIM_PERCENT^MDC|||||R
+OBX|4|NM|196660^MDC_EVT_INOP^MDC|1.7.6.131330.3|1||||||R
+OBX|5|NA|131310^MDC_ECG_ELEC_POTL_I^MDC|1.7.6.131310|Lead I
+OBX|6|NM|0^MDC_ATTR_SAMP_RATE^MDC|1.7.6.131310.1|256|264640^MDC_DIM_HZ^MDC|||||R
+OBX|7|NM|67917^MDC_ATTR_NU_MSMT_RES^MDC|1.7.6.131310.2|0.02|266418^MDC_DIM_MILLI_VOLT^MDC|||||R
+OBX|8|NM|196660^MDC_EVT_INOP^MDC|1.7.6.131310.3|0||||||R
+OBX|9|NA|131311^MDC_ECG_ELEC_POTL_II^MDC|1.7.6.131311|Lead II
+OBX|10|NM|0^MDC_ATTR_SAMP_RATE^MDC|1.7.6.131311.1|256|264640^MDC_DIM_HZ^MDC|||||R
+OBX|11|NM|67917^MDC_ATTR_NU_MSMT_RES^MDC|1.7.6.131311.2|0.02|266418^MDC_DIM_MILLI_VOLT^MDC|||||R
+OBX|12|NM|196660^MDC_EVT_INOP^MDC|1.7.6.131311.3|0||||||R
+OBX|13|NA|131312^MDC_ECG_ELEC_POTL_III^MDC|1.7.6.131312|Lead III
+OBX|14|NM|0^MDC_ATTR_SAMP_RATE^MDC|1.7.6.131312.1|256|264640^MDC_DIM_HZ^MDC|||||R
+OBX|15|NM|67917^MDC_ATTR_NU_MSMT_RES^MDC|1.7.6.131312.2|0.02|266418^MDC_DIM_MILLI_VOLT^MDC|||||R
+OBX|16|NM|196660^MDC_EVT_INOP^MDC|1.7.6.131312.3|0||||||R
+OBX|17|NA|131313^MDC_ECG_ELEC_POTL_AVR^MDC|1.7.6.131313|Lead aVR
+OBX|18|NM|0^MDC_ATTR_SAMP_RATE^MDC|1.7.6.131313.1|256|264640^MDC_DIM_HZ^MDC|||||R
+OBX|19|NM|67917^MDC_ATTR_NU_MSMT_RES^MDC|1.7.6.131313.2|0.02|266418^MDC_DIM_MILLI_VOLT^MDC|||||R
+OBX|20|NM|196660^MDC_EVT_INOP^MDC|1.7.6.131313.3|0||||||R
+OBX|21|NA|131314^MDC_ECG_ELEC_POTL_AVL^MDC|1.7.6.131314|Lead aVL
+OBX|22|NM|0^MDC_ATTR_SAMP_RATE^MDC|1.7.6.131314.1|256|264640^MDC_DIM_HZ^MDC|||||R
+OBX|23|NM|67917^MDC_ATTR_NU_MSMT_RES^MDC|1.7.6.131314.2|0.02|266418^MDC_DIM_MILLI_VOLT^MDC|||||R
+OBX|24|NM|196660^MDC_EVT_INOP^MDC|1.7.6.131314.3|0||||||R
+OBX|25|NA|131315^MDC_ECG_ELEC_POTL_AVF^MDC|1.7.6.131315|Lead aVF
+OBX|26|NM|0^MDC_ATTR_SAMP_RATE^MDC|1.7.6.131315.1|256|264640^MDC_DIM_HZ^MDC|||||R
+OBX|27|NM|67917^MDC_ATTR_NU_MSMT_RES^MDC|1.7.6.131315.2|0.02|266418^MDC_DIM_MILLI_VOLT^MDC|||||R
+OBX|28|NM|196660^MDC_EVT_INOP^MDC|1.7.6.131315.3|0||||||R
+OBX|29|NA|131331^MDC_ECG_ELEC_POTL_V1^MDC|1.7.6.131331|Lead V1
+OBX|30|NM|0^MDC_ATTR_SAMP_RATE^MDC|1.7.6.131331.1|256|264640^MDC_DIM_HZ^MDC|||||R
+OBX|31|NM|67917^MDC_ATTR_NU_MSMT_RES^MDC|1.7.6.131331.2|0.02|266418^MDC_DIM_MILLI_VOLT^MDC|||||R
+OBX|32|NM|196660^MDC_EVT_INOP^MDC|1.7.6.131331.3|0||||||R
+</code></pre></div>
+<p>The message is broken down into sections:</p>
+<ul>
+<li>Message header (MSH)</li>
+<li>Patient identification (PID) </li>
+<li>Patient visit segment 1 (PV1) - information about the patient's encounter</li>
+<li>Observation request (OBR) - information on origin of request for data</li>
+<li>Observation result (OBX) - values from observation</li>
+</ul>
+<p>Each waveform signal generates four consecutive OBX lines:</p>
+<ul>
+<li>The first has the signal name and values. Individual values are ^ separated e.g. in the example above instead of "Pleth signal" you would actually see something like "1^2^3^4^..." (Narrative/NA type)</li>
+<li>The second has the sample rate (Numeric/NM type)</li>
+<li>The third has the measurement resolution and unit (Numeric/NM type)</li>
+<li>The fourth is for returning device inoperability/error cocdes (Numeric/NM type)</li>
+</ul>
+<h2 id="extracting-the-relevant-information">Extracting the relevant information</h2>
+<p>Conversion from HL7 to CMF is done by the <code>SignalDataExtractor</code> class in "containers/building/python/code/core/mindray_hl7_parser.py". Not all information is kept in this step.</p>
+<table>
+<thead>
+<tr>
+<th>Segment</th>
+<th>Included Information</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MSH</td>
+<td>Nothing</td>
+<td></td>
+</tr>
+<tr>
+<td>PID</td>
+<td>Nothing</td>
+<td>Patient info currently unreliable (manually input on monitor)</td>
+</tr>
+<tr>
+<td>PV1</td>
+<td>Ward and bed</td>
+<td></td>
+</tr>
+<tr>
+<td>OBR</td>
+<td>Message timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>OBX</td>
+<td>Name, frequency, resolution, unit, values</td>
+<td>For each signal</td>
+</tr>
+</tbody>
+</table>
+<p>A CMF message is then created with the following contents:</p>
+<ul>
+<li>Device ID (composed of ward and bed)</li>
+<li>Timestamp</li>
+<li>For each signal:<ul>
+<li>Name</li>
+<li>Unit</li>
+<li>Frequency</li>
+<li>Values</li>
+<li>Resolution</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Parser as provided is not currently configured to parse demographic information from the PID section of the .hl7. If you want to parse this information you will need to implement this yourself, and we welcome pull requests with this or other features.</p>
+</div>
+<h2 id="bedspace-and-signal-checks">Bedspace and signal checks</h2>
+<p>During parsing, some consistency checks are carried out, namely that the recorded bedspace (bed, ward combination) and signal names belong to a known set, stored in <code>mapping_registry.json</code> in "containers/building/python/code/core". If an unknown signal or bedspace is recorded, an error is thrown. This is to prevent the flow of unexpected data into the waveform database. If a new bedspace or signal is to be monitored, the mapping registry must be updated accordingly. </p>
+<p>The mapping registry also provides a mapping for bedspace and signal names into a standardised format.</p>
+<h2 id="code">Code</h2>
+<p>Parsing scripts can all be found in "containers/building/python/code". All of the parsing scripts are based on the <code>ParsingOrchestrator</code> class in the "core/parser_pipeline.py" module. This class implements the common parsing workflow which is common to all use cases.</p>
+<p>Each individual script (for realtime, backlog and errors) contains an orchestrator class which inherits from the <code>ParsingOrchestrator</code>, adding specific implementation for the <code>_input_task</code> method, which defines how to pull HL7s for parsing. </p>
+<h3 id="common-parsing-workflow">Common parsing workflow</h3>
+<p>All parsers implement he common parsing workflow:</p>
+<ol>
+<li>Initialise one or more parser workers; parsing can be parallelised by initialising more than one worker. A worker is initialised by:<ul>
+<li>Generating a unique ID for the specific worker process instance</li>
+<li>Creating a worker as an instance of the <code>HL7DataExtractor</code> class</li>
+<li>Checking connection to RabbitMQ if required</li>
+<li>Initialising a <a href="../metrics/">metrics manager</a></li>
+</ul>
+</li>
+<li>Pull messages one by one from source<ul>
+<li>Extract the CMF from the message body</li>
+<li>Publish the CMF to <code>cmf_exchange</code> exchange</li>
+<li>Send any messages failing checks or erroring to the correct error queue</li>
+<li>Record metrics</li>
+</ul>
+</li>
+</ol>
+<h3 id="realtime-parser">Realtime parser</h3>
+<p>Parsing in realtime is carried out by <code>hl7_parser_realtime.py</code>. The script takes a <code>--max-parsers</code> argument for how many parser workers to spin up (default = 1). Messages are pulled from the <code>hl7</code> queue to ingest into the pipeline.</p>
+<h3 id="error-parser">Error parser</h3>
+<p>Any messages which lead to errors, including failing checks for known bedspaces and signals, are re-routed as HL7s to the corresponding RabbitMQ <a href="../rabbitmq/#monitoring-rabbitmq">error queues</a>.</p>
+<p>Once the underlying issues have been resolved, the messages waiting in these queues can be parsed and ingested into AtriumDB. This is done by manually setting the <code>hl7_parser_errors.py</code> script to run from a shell attached to the <code>python-hl7_backlog</code> container. The script takes the following arguments:</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--error-queue</code></td>
+<td>The error queue to pull messages from.</td>
+</tr>
+<tr>
+<td><code>--max-parsers</code></td>
+<td>How many parser workers to spin up (default = 4)</td>
+</tr>
+<tr>
+<td><code>--disable-backpressure</code></td>
+<td>Because the data are all available and not pulled in realtime, backpressure is applied to prevent overwhelming the parser. Adding this flag disables the backpressure.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../javascripts/tablesort.js"></script>
+      
+    
+  </body>
+</html>
