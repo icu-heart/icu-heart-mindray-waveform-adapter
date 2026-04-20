@@ -17,4 +17,4 @@ jobs:
           python-version: '3.x'
       # Need to have mkdocs v1 as v2 is a breaking change
       - run: pip install "mkdocs<2.0" mkdocs-material
-      - run: mkdocs gh-deploy --force
+      - run: mkdocs gh-deploy --force -f docs/mkdocs.yml
