@@ -1,0 +1,49 @@
+# my global config
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+   
+otlp:
+  promote_resource_attributes:
+    - service.instance.id
+    - service.name
+    - container.name
+    - deployment.environment.name
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+       # The label name is added as a label `label_name=<label_value>` to any timeseries scraped from this config.
+        labels:
+          app: "prometheus"
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        # keep useful metrics, drop the rest (the default is too noisy)
+        regex: 'up|scrape_.*|prometheus_(engine|http|rule|target|tsdb)_.*|go_(goroutines|memstats_alloc_bytes)|process_cpu_seconds_total'
+        action: keep
+
+  - job_name: 'rabbitmq'
+    static_configs:
+      - targets: ['rabbitmq:15692']
+    metrics_path: /metrics/detailed
+    params:
+      vhost:
+        - '/'
+      family:
+        - 'queue_coarse_metrics'
+        - 'queue_consumer_count'
+        - 'queue_exchange_metrics'
+        - 'queue_metrics' 

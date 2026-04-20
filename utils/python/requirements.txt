@@ -1,0 +1,10 @@
+pika
+aio_pika
+hl7
+aiofiles
+aiorun
+colorama
+opentelemetry-sdk
+opentelemetry-exporter-otlp
+mkdocs 
+mkdocs-material

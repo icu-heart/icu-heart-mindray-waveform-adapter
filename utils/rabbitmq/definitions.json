@@ -1,0 +1,57 @@
+{
+  "users": [
+    {
+      "name": "__RABBITMQ_USER__",
+      "password_hash": "__RABBITMQ_PASSWORD_HASH__",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": "administrator",
+      "limits": {}
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "user",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "topic_permissions": [],
+  "parameters": [],
+  "global_parameters": [],
+  "policies": [],
+  "queues": [
+    {"name": "hl7", "vhost": "/", "durable": true, "auto_delete": false, "arguments": {"x-queue-type": "classic"}},
+    {"name": "hl7_unknown_signal", "vhost": "/", "durable": true, "auto_delete": false, "arguments": {"x-queue-type": "classic"}},
+    {"name": "hl7_unknown_bedspace", "vhost": "/", "durable": true, "auto_delete": false, "arguments": {"x-queue-type": "classic"}},
+    {"name": "hl7_format_error", "vhost": "/", "durable": true, "auto_delete": false, "arguments": {"x-queue-type": "classic"}},
+    {"name": "hl7_missing_field_error", "vhost": "/", "durable": true, "auto_delete": false, "arguments": {"x-queue-type": "classic"}},
+    {"name": "hl7_invalid_timestamp_error", "vhost": "/", "durable": true, "auto_delete": false, "arguments": {"x-queue-type": "classic"}},
+    {"name": "hl7_signal_data_error", "vhost": "/", "durable": true, "auto_delete": false, "arguments": {"x-queue-type": "classic"}},
+    {"name": "hl7_unhandled_error", "vhost": "/", "durable": true, "auto_delete": false, "arguments": {"x-queue-type": "classic"}},
+    {"name": "cmf_atriumdb", "vhost": "/", "durable": true, "auto_delete": false, "arguments": {}},
+    {"name": "cmf_checker", "vhost": "/", "durable": true, "auto_delete": false, "arguments": {}}
+  ],
+  "exchanges": [
+    {"name": "", "vhost": "/", "type": "direct", "durable": true, "auto_delete": false, "internal": false, "arguments": {}},
+    {"name": "cmf_exchange", "vhost": "/", "type": "fanout", "durable": true, "auto_delete": false, "internal": false, "arguments": {}}
+  ],
+  "bindings": [
+    {"source": "", "vhost": "/", "destination": "hl7", "destination_type": "queue", "routing_key": "hl7", "arguments": {}},
+    {"source": "", "vhost": "/", "destination": "hl7_unknown_signal", "destination_type": "queue", "routing_key": "hl7_unknown_signal", "arguments": {}},
+    {"source": "", "vhost": "/", "destination": "hl7_unknown_bedspace", "destination_type": "queue", "routing_key": "hl7_unknown_bedspace", "arguments": {}},
+    {"source": "", "vhost": "/", "destination": "hl7_format_error", "destination_type": "queue", "routing_key": "hl7_format_error", "arguments": {}},
+    {"source": "", "vhost": "/", "destination": "hl7_missing_field_error", "destination_type": "queue", "routing_key": "hl7_missing_field_error", "arguments": {}},
+    {"source": "", "vhost": "/", "destination": "hl7_invalid_timestamp_error", "destination_type": "queue", "routing_key": "hl7_invalid_timestamp_error", "arguments": {}},
+    {"source": "", "vhost": "/", "destination": "hl7_signal_data_error", "destination_type": "queue", "routing_key": "hl7_signal_data_error", "arguments": {}},
+    {"source": "", "vhost": "/", "destination": "hl7_unhandled_error", "destination_type": "queue", "routing_key": "hl7_unhandled_error", "arguments": {}},
+    {"source": "cmf_exchange", "vhost": "/", "destination": "cmf_atriumdb", "destination_type": "queue", "routing_key": "", "arguments": {}},
+    {"source": "cmf_exchange", "vhost": "/", "destination": "cmf_checker", "destination_type": "queue", "routing_key": "", "arguments": {}}
+  ]
+}
