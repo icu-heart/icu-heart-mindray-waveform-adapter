@@ -11,11 +11,14 @@ __pycache__
 *.pkl*
 *.log 
 *.so
-*.js
+*.js*
 *.env.local
 .env.*.local
 *.crt
 *.key
+*.html
+*.xml*
+*.css*
 
 # To keep
 !mapping_registry.json
