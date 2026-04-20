@@ -1,0 +1,29 @@
+site_name: ICU-Heart Mindray Waveform Adapter
+docs_dir: content
+nav:
+  - Home: index.md
+  - Setup: setup.md
+  - RabbitMQ: rabbitmq.md
+  - Receiver: receiver.md
+  - Parser: parser.md
+  - Metrics: metrics.md
+extra:
+  homepage: https://icu-heart.github.io
+theme: 
+  name: material
+  logo: img/WoT_Rectangle_C_Aligned_No_Tag.png
+  favicon: img/ECG_on_Transparent.png
+  palette:
+    primary: grey
+    accent: red
+  features:
+    - content.code.copy
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+extra_javascript:
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
