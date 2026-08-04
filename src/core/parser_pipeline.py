@@ -63,7 +63,7 @@ def make_cmf(devid: int, systime: int, mname: str, uom: str, freq: int, val: str
     return json.dumps({
         "srcid": 0, "devid": devid, "systime": systime, "type": "wav",
         "mname": mname, "mtime": systime, "uom": uom, "freq": freq,
-        "val": val, "srcmeta": {"scale_m": resolution}
+        "val": val, "srcmeta": {"scale_m": resolution, "scale_b": 0}
     })
 
 def parse_and_publish_in_process(msg: Dict[str, Any], enable_backpressure: bool) -> None:
